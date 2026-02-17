@@ -600,6 +600,40 @@
             }
         }
     </style>
+    <!-- Oracle Responsys Web Push SDK -->
+    <script type='text/javascript' id='rsyswpsdk' src='https://api.pushio.com/webpush/sdk/wpIndex_min.js' wpconfig = '{"appserviceKey":"BO3bPAI2lycIq7PQXjgj9l5mimNen_4dw2QrYab9fmyCEfHCrbHcDKsoKbt4HGNi0-6iaK-0tjkwspC7QrA4iFQ=","apiKey":"ABEX404zBdi5WLSFAKdSXvFWg","accountToken":"ABElKaqpK-3l_zDeOp-XArlkg","appver":"0.0.0","apiHost":"https://abr16c0-webpush.oraclersys.com","lazy":false}'></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // 🔥 Initialize Responsys Web Push
+    ResponsysWebPush.init({
+        appId: "3025"   // Replace with actual App ID
+    });
+
+    // 🔔 Ask for Push Permission
+    ResponsysWebPush.subscribe().then(function () {
+
+        console.log("User subscribed to push");
+
+        // ✅ Get Visitor ID AFTER subscription
+        return ResponsysWebPush.getVisitorId();
+
+    }).then(function (visitorId) {
+
+        console.log("Visitor ID:", visitorId);
+
+        // Store in localStorage
+        localStorage.setItem("RESPONSYS_VISITOR_ID", visitorId);
+
+    }).catch(function (error) {
+        console.error("Error:", error);
+    });
+
+});
+</script>
+
+
 </head>
 <body>
     <!-- Navigation -->
